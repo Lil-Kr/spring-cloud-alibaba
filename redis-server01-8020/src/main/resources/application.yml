@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: redis-server01-8020
+  profiles:
+    active: dev

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: nacos-server01-8050
+  profiles:
+    active: dev

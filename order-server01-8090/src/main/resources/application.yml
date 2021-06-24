@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: order-server01-8090
+  profiles:
+    active: dev

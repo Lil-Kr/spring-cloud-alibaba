@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: elasticsearch-server01-8060
+  profiles:
+    active: dev

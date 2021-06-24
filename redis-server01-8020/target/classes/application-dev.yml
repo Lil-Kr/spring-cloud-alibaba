@@ -1,0 +1,65 @@
+server:
+  port: 8020
+
+spring:
+  application:
+    name: redis-server01-8020
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://192.168.88.20:8848
+        username: nacos
+        password: nacos
+        group: DEFAULT_GROUP
+        enabled: true
+        register-enabled: true
+
+  ## ----------------------- redis相关配置
+  redis:
+    host: 192.168.88.20 #配置redis的主机地址，需要修改成自己的
+    database: 0
+    port: 6379 # 端口
+    password: 123456 # 密码
+    jedis:
+      pool:
+        max-active: 50 # 连接池最大活跃数
+        max-idle: 20 # 连接池中的最大空闲连接，默认值也是8
+        min-idle: 5 # 连接池中的最小空闲连接，默认值也是0
+
+## ------------------------ Ribbon 相关配置
+ribbon:
+  eager-load:
+    enabled: true
+    clients: order-server01,user-server01,rocketmq-server01 # Ribbon 饥饿加载, 服务提供方的服务名
+
+## ------------------------ fegin 相关配置
+feign:
+  #  client:
+  #    config:
+  #      default:
+  #        loggerLevel: full
+  httpclient:
+    # 让 Feign 使用 apache httpclient 做请求; 而不是默认的 urlconnection
+    enabled: true
+    # Feign的做大连接数
+    max-connections: 200
+    # Feign单个路径的最大连接数
+    max-connections-per-route: 50
+  # 为 feign 整合 sentinel
+#  sentinel:
+#    enabled: true
+
+## ------------------------ web actuator 相关设置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+## 日志配置
+logging:
+  level:
+    # Feign日志配置 com.cy.configuration.feignconfig
+    com.cy.orderserver01.feignclient.UserFeignClient: debug

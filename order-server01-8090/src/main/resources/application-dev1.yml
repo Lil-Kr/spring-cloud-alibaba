@@ -1,0 +1,71 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: order-server01-8090
+  profiles:
+    active: dev
+  cloud:
+    ## nacos 注册中心
+    nacos:
+      discovery:
+        ## nacos 注册地址
+        server-addr: http://192.168.88.20:8848
+        username: nacos
+        password: nacos
+        enabled: true
+        group: DEFAULT_GROUP
+        register-enabled: true
+        ## 命名空间
+#        namespace: ea8ccb31-d4f2-47ec-a197-51ae918a654d
+        ## 集群名称
+#        cluster-name: GZ
+    ## Sentinel 相关配置
+    sentinel:
+      ## 取消懒加载
+      eager: true
+      transport:
+        ## 指定sentinel控制台地址
+        dashboard: http://192.168.88.20:8099
+
+## sentinel 集成 ahas配置
+#ahas:
+#  namespace: default
+#  license: 9dbbeea977f74847a3164b8d87301343
+#project:
+#  name: ${spring.application.name}
+
+
+## Ribbon 相关配置
+ribbon:
+  eager-load:
+    enabled: true #
+    clients: user-server01-8085 # Ribbon 饥饿加载, 服务提供方的服务名
+
+#user-server01:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+
+# fegin 相关配置
+feign:
+  client:
+  httpclient:
+    # 让Feign使用apache httpclient做请求; 而不是默认的 urlconnection
+    enabled: true
+    # Feign的做大连接数
+    max-connections: 200
+    # Feign单个路径的最大连接数
+    max-connections-per-route: 50
+#    config:
+#      # 想要调用的微服务名称 | default: 全局配置
+#      user-server01:
+#        loggerLevel: basic
+  sentinel:
+    enabled: true
+
+## 日志配置
+logging:
+  level:
+    # Feign日志配置 com.cy.configuration.feignconfig
+    com.cy.orderserver01.feignclient.UserFeignClient: debug

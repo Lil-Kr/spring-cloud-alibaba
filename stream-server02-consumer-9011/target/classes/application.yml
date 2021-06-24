@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: stream-server02-consumer-9011
+  profiles:
+    active: dev

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: rocketmq-server01-9000
+  profiles:
+    active: dev

@@ -1,0 +1,47 @@
+server:
+  port: 8040
+
+spring:
+  application:
+    name: gateway-server01-8040
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://192.168.88.20:8848
+        username: nacos
+        password: nacos
+        enabled: true
+        group: DEFAULT_GROUP
+        register-enabled: true
+    gateway:
+      # Gateway通过nacos服务发现组件找到其他服务
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: order_route
+          ## 断言: 请求转发路径
+          predicates:
+            - Path=/gateway/**
+#            - TimeBetween=上午9:00, 下午5:00
+          ## 过滤规则
+          filters:
+            - StripPrefix=1
+          uri: lb://order-server01-8090/
+
+        - id: other_route
+          predicates:
+            - TimeBetween=上午9:00, 下午5:00
+            - Path=/gatewayother/**
+          filters:
+            - PerLog=k1,v1
+          uri: lb://user-server01-8085/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
