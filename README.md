@@ -1,4 +1,4 @@
-# 项目信息
+# project info
 
 ## introduce
 
