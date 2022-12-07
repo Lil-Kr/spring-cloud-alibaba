@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: stream-server01-produce-9010
-  profiles:
-    active: dev
