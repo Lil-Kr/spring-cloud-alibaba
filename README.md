@@ -1,10 +1,10 @@
-# 项目信息
+# project info
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
-- [项目信息](#项目信息)
+- [project info](#project-info)
   - [introduce](#introduce)
   - [server port program](#server-port-program)
     - [geteway-server01](#geteway-server01)
