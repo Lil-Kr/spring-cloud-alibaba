@@ -33,6 +33,9 @@ this repository organizes the versions of commonly used components in the spring
   * **Seata**: 
   * **spring-security**:
 
+* **reference**
+  * [spring cloud alibaba version](https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E)
+
 ## server port program
 
 ### geteway-server01
